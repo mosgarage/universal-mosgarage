@@ -23,27 +23,27 @@ A highly optimized, reusable development container that works across all project
 ### Install in Existing Project
 
 ```bash
-# Quick install (replace brianoestberg with your GitHub username)
-curl -sSL https://raw.githubusercontent.com/brianoestberg/universal-devcontainer/main/install.sh | bash
+# Quick install (replace mosgarage with your GitHub username)
+curl -sSL https://raw.githubusercontent.com/mosgarage/universal-mosgarage/main/install.sh | bash
 
 # Or clone manually
-git clone https://github.com/brianoestberg/universal-devcontainer.git
-cp -r universal-devcontainer/.devcontainer .
-rm -rf universal-devcontainer
+git clone https://github.com/mosgarage/universal-mosgarage.git
+cp -r universal-mosgarage/.mosgarage .
+rm -rf universal-mosgarage
 ```
 
 ### Run Setup Wizard
 
 ```bash
-./.devcontainer/scripts/setup-wizard.sh
+./.mosgarage/scripts/setup-wizard.sh
 ```
 
 ## Documentation
 
 - [Windows Setup Guide](WINDOWS-SETUP.md) - Step-by-step Windows installation
-- [Configuration Guide](.devcontainer/README.md)
-- [Migration Guide](.devcontainer/MIGRATION.md)
-- [Sharing Guide](.devcontainer/SHARING.md)
+- [Configuration Guide](.mosgarage/README.md)
+- [Migration Guide](.mosgarage/MIGRATION.md)
+- [Sharing Guide](.mosgarage/SHARING.md)
 
 ## Supported Languages & Frameworks
 
@@ -62,10 +62,10 @@ The container automatically detects and configures:
 
 ```bash
 # Install in new project
-curl -sSL https://raw.githubusercontent.com/brianoestberg/universal-devcontainer/main/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/mosgarage/universal-mosgarage/main/install.sh | bash
 
 # Run setup wizard
-./.devcontainer/scripts/setup-wizard.sh
+./.mosgarage/scripts/setup-wizard.sh
 
 # Update tools
 dev-update
@@ -74,7 +74,7 @@ dev-update
 dev-scan
 
 # Customize
-edit .devcontainer/config.yaml
+edit .mosgarage/config.yaml
 ```
 
 ## Contributing

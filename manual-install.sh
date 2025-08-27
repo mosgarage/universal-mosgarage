@@ -1,33 +1,33 @@
 #!/bin/bash
 set -e
 
-echo "Manual Universal Dev Container Installation"
+echo "Manual Universal Mosgarage Installation"
 echo "=========================================="
 
 # Check current directory
 echo "Current directory: $(pwd)"
 
-# Check if .devcontainer exists
-if [[ -d ".devcontainer" ]]; then
-    echo "Found existing .devcontainer directory"
+# Check if .mosgarage exists
+if [[ -d ".mosgarage" ]]; then
+    echo "Found existing .mosgarage directory"
     echo "Contents:"
-    ls -la .devcontainer/
+    ls -la .mosgarage/
     echo ""
     read -p "Remove and reinstall? (y/n) " -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-        rm -rf .devcontainer
-        echo "Removed old .devcontainer"
+        rm -rf .mosgarage
+        echo "Removed old .mosgarage"
     else
-        echo "Keeping existing .devcontainer"
+        echo "Keeping existing .mosgarage"
         exit 0
     fi
 fi
 
 # Download
 echo ""
-echo "Downloading universal-devcontainer..."
-if curl -L https://github.com/brianoestberg/universal-devcontainer/archive/main.tar.gz -o devcontainer.tar.gz; then
+echo "Downloading universal-mosgarage..."
+if curl -L https://github.com/mosgarage/universal-mosgarage/archive/main.tar.gz -o mosgarage.tar.gz; then
     echo "✓ Download successful"
 else
     echo "✗ Download failed"
@@ -35,61 +35,61 @@ else
 fi
 
 # Check file size
-size=$(stat -f%z devcontainer.tar.gz 2>/dev/null || stat -c%s devcontainer.tar.gz 2>/dev/null || echo 0)
+size=$(stat -f%z mosgarage.tar.gz 2>/dev/null || stat -c%s mosgarage.tar.gz 2>/dev/null || echo 0)
 echo "Downloaded file size: $size bytes"
 
 # List contents
 echo ""
 echo "Archive contents:"
-tar tzf devcontainer.tar.gz | head -20
+tar tzf mosgarage.tar.gz | head -20
 
 # Extract
 echo ""
 echo "Extracting..."
-if tar xzf devcontainer.tar.gz; then
+if tar xzf mosgarage.tar.gz; then
     echo "✓ Extraction successful"
 else
     echo "✗ Extraction failed"
     exit 1
 fi
 
-# Move .devcontainer to current directory
-if [[ -d "universal-devcontainer-main/.devcontainer" ]]; then
-    mv universal-devcontainer-main/.devcontainer .
-    rm -rf universal-devcontainer-main
-    echo "✓ Moved .devcontainer to current directory"
+# Move .mosgarage to current directory
+if [[ -d "universal-mosgarage-main/.mosgarage" ]]; then
+    mv universal-mosgarage-main/.mosgarage .
+    rm -rf universal-mosgarage-main
+    echo "✓ Moved .mosgarage to current directory"
 else
-    echo "✗ .devcontainer not found in archive"
+    echo "✗ .mosgarage not found in archive"
     exit 1
 fi
 
 # Clean up
-rm devcontainer.tar.gz
+rm mosgarage.tar.gz
 
 # Verify installation
 echo ""
 echo "Verification:"
 echo "-------------"
 
-if [[ -f ".devcontainer/devcontainer.json" ]]; then
-    echo "✓ devcontainer.json exists"
+if [[ -f ".mosgarage/mosgarage.json" ]]; then
+    echo "✓ mosgarage.json exists"
 else
-    echo "✗ devcontainer.json missing"
+    echo "✗ mosgarage.json missing"
 fi
 
-if [[ -f ".devcontainer/Dockerfile" ]]; then
+if [[ -f ".mosgarage/Dockerfile" ]]; then
     echo "✓ Dockerfile exists"
     echo ""
     echo "Checking for LANGUAGE fix:"
-    grep "LANGUAGE" .devcontainer/Dockerfile || echo "LANGUAGE not found"
+    grep "LANGUAGE" .mosgarage/Dockerfile || echo "LANGUAGE not found"
 else
     echo "✗ Dockerfile missing"
 fi
 
-if [[ -d ".devcontainer/scripts" ]]; then
+if [[ -d ".mosgarage/scripts" ]]; then
     echo "✓ scripts directory exists"
     echo "  Scripts found:"
-    ls .devcontainer/scripts/ | sed 's/^/    /'
+    ls .mosgarage/scripts/ | sed 's/^/    /'
 else
     echo "✗ scripts directory missing"
 fi
